@@ -1,10 +1,8 @@
 package A2_hierholzer;
 
-import java.util.List;
-
 public class Edge {
-    private Vertex v1;
-    private Vertex v2;
+    private final Vertex v1;
+    private final Vertex v2;
     private boolean visited;
 
     public Edge(Vertex v1, Vertex v2) {
