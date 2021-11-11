@@ -1,12 +1,16 @@
 package A2_hierholzer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vertex {
     private String name;
     private List<Edge> edgeList;
 
-    public Vertex(String name) {}
+    public Vertex(String name) {
+        this.name = name;
+        edgeList = new ArrayList<>();
+    }
 
     public void setName(String name) {
         this.name = name;

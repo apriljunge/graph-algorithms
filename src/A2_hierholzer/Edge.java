@@ -8,6 +8,8 @@ public class Edge {
     public Edge(Vertex v1, Vertex v2) {
         this.v1 = v1;
         this.v2 = v2;
+        this.visited = false;
+        addEdgeToVertices();
     }
 
     public Vertex getV1() {
@@ -26,7 +28,7 @@ public class Edge {
         this.visited = visited;
     }
 
-    public Vertex getOtherEnd(Vertex v) throws Exception {
+    public Vertex getOtherEnd(Vertex v) {
         if (v == this.v1) {
             return v2;
         }
@@ -35,12 +37,12 @@ public class Edge {
             return v1;
         }
 
-        throw new Exception("Dieser Vertex ist nicht mit der Edge verbunden");
+        return null;
     }
 
     @Override
     public String toString() {
-        return "Die Edge verbindet " + v1 + " und " + v2;
+        return "Edge " + v1 + " – " + v2;
     }
 
     private void addEdgeToVertices() {
