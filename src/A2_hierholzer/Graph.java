@@ -1,6 +1,7 @@
 package A2_hierholzer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -47,6 +48,59 @@ public class Graph {
         }
 
         return mainTour;
+    }
+
+    public void calcDistancesFromStart(Vertex start) {
+        this.resetAllVertices();
+        this.resetAllEdges();
+
+        List<Vertex> openList = new LinkedList<>();
+
+        openList.add(start);
+        openList.get(0).setTentativeLength(0);
+
+        while (openList.size() > 0) {
+            Vertex currentV = openList.get(0);
+
+            for (Edge edge: currentV.getEdgeList()) {
+                if (edge.isVisited()) {
+                    continue;
+                }
+
+                Vertex nextV = edge.getOtherEnd(currentV);
+
+                double totalLength = currentV.getTentativeLength() + edge.getLength();
+
+                if (totalLength < nextV.getTentativeLength()) {
+                    nextV.setTentativeLength(totalLength);
+                    nextV.setPrevious(currentV);
+                }
+
+                this.addVertexToOpenList(openList, nextV);
+            }
+
+            openList.remove(currentV);
+
+            openList.sort(null);
+        }
+    }
+
+    public List<Vertex> findShortestParth(Vertex start, Vertex end) {
+        Vertex current;
+        List<Vertex> shortestPath = new LinkedList<>();
+        calcDistancesFromStart(start);
+
+        current = end;
+        do {
+            shortestPath.add(current);
+            current = end.getPrevious();
+        } while (current != start);
+
+        shortestPath.add(start);
+
+        Collections.reverse(shortestPath);
+
+        return shortestPath;
     }
 
     private Vertex determineStartVertexFromList(List<Vertex> vertexList) {
@@ -117,5 +171,26 @@ public class Graph {
         }
 
         return null;
+    }
+
+    private void addVertexToOpenList(List<Vertex> openList, Vertex v) {
+        if (openList.contains(v) == false) {
+            openList.add(v);
+        }
+    }
+
+    private void resetAllVertices() {
+        for (Vertex v: this.vertices) {
+            v.setTentativeLength(Double.POSITIVE_INFINITY);
+            v.setPrevious(null);
+        }
+    }
+
+    private void resetAllEdges() {
+        for (Vertex v: this.vertices) {
+            for(Edge e: v.getEdgeList()) {
+                e.setVisited(false);
+            }
+        }
     }
 }

@@ -3,9 +3,11 @@ package A2_hierholzer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vertex {
+public class Vertex implements Comparable<Vertex> {
     private String name;
     private List<Edge> edgeList;
+    private double tentativeLength;
+    private Vertex previous;
 
     public Vertex(String name) {
         this.name = name;
@@ -24,6 +26,22 @@ public class Vertex {
         this.edgeList = edgeList;
     }
 
+    public double getTentativeLength() {
+        return tentativeLength;
+    }
+
+    public void setTentativeLength(double tentativeLength) {
+        this.tentativeLength = tentativeLength;
+    }
+
+    public Vertex getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(Vertex previous) {
+        this.previous = previous;
+    }
+
     public List<Edge> getEdgeList() {
         return edgeList;
     }
@@ -35,5 +53,9 @@ public class Vertex {
     @Override
     public String toString() {
         return "Vertex " + name;
+    }
+
+    public int compareTo(Vertex v) {
+        return Double.compare(this.tentativeLength, v.getTentativeLength());
     }
 }

@@ -4,6 +4,7 @@ public class Edge {
     private final Vertex v1;
     private final Vertex v2;
     private boolean visited;
+    private double length;
 
     public Edge(Vertex v1, Vertex v2) {
         this.v1 = v1;
@@ -26,6 +27,14 @@ public class Edge {
 
     public void setVisited(boolean visited) {
         this.visited = visited;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
     }
 
     public Vertex getOtherEnd(Vertex v) {

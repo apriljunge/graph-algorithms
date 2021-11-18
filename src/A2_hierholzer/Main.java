@@ -34,5 +34,34 @@ public class Main {
         new Edge(f, g);
 
         System.out.println(graph.findEulerTour());
+
+
+        // Dijkstra
+        Graph dijkstraGraph = new Graph();
+
+        Vertex A = new Vertex("A");
+        Vertex B = new Vertex("B");
+        Vertex C = new Vertex("C");
+        Vertex D = new Vertex("D");
+        Vertex E = new Vertex("E");
+        Vertex F = new Vertex("F");
+        Vertex G = new Vertex("G");
+
+        graph.addVertex(A);
+        graph.addVertex(B);
+        graph.addVertex(C);
+        graph.addVertex(D);
+        graph.addVertex(E);
+        graph.addVertex(F);
+        graph.addVertex(G);
+
+        new Edge(A, B).setLength(10);
+        new Edge(A, C).setLength(37);
+        new Edge(A, F).setLength(21);
+        new Edge(B, D).setLength(94);
+        new Edge(B, F).setLength(34);
+        new Edge(C, D).setLength(50);
+        new Edge(C, E).setLength(99);
+        new Edge(C, F).setLength(22);
     }
 }
