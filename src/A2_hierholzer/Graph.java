@@ -69,12 +69,13 @@ public class Graph {
         current = start;
 
         do {
-            Edge edge;
             visitedVertices.add(current);
-            edge = findUnvisitedEdge(current);
+            Edge edge = findUnvisitedEdge(current);
             edge.setVisited(true);
             current = edge.getOtherEnd(current);
         } while (current != start);
+
+        visitedVertices.add(current);
 
         return visitedVertices;
     }
@@ -85,12 +86,12 @@ public class Graph {
             return;
         }
 
-        int mainIndex = 0;
-        while (subTour.get(0) != mainTour.get(mainIndex)) {
-            mainIndex++;
-        }
+        int index = mainTour.indexOf(subTour.get(0));
 
-        mainTour.addAll(mainIndex, subTour);
+        // first and last index are doubled
+        subTour.remove(0);
+
+        mainTour.addAll(index, subTour);
     }
 
     private boolean hasUnvisitedEdges() {
