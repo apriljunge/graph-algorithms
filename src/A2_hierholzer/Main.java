@@ -21,11 +21,11 @@ public class Main {
 
         new Edge(a, b);
         new Edge(a, d);
+        new Edge(b, c);
         new Edge(b, d);
         new Edge(b, e);
         new Edge(b, f);
         new Edge(b, g);
-        new Edge(b, c);
         new Edge(c, d);
         new Edge(c, e);
         new Edge(c, f);
