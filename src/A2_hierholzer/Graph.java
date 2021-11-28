@@ -51,32 +51,35 @@ public class Graph {
     }
 
     public void calcDistancesFromStart(Vertex start) {
+        List<Vertex> openList = new LinkedList<>();
+        Vertex currentV, nextV;
+        double totalLength;
+
         this.resetAllVertices();
         this.resetAllEdges();
 
-        List<Vertex> openList = new LinkedList<>();
-
-        openList.add(start);
-        openList.get(0).setTentativeLength(0);
+        start.setTentativeLength(0);
+        addVertexToOpenList(openList, start);
 
         while (openList.size() > 0) {
-            Vertex currentV = openList.get(0);
+            currentV = openList.get(0);
 
             for (Edge edge: currentV.getEdgeList()) {
                 if (edge.isVisited()) {
                     continue;
                 }
 
-                Vertex nextV = edge.getOtherEnd(currentV);
+                edge.setVisited(true);
+                nextV = edge.getOtherEnd(currentV);
 
-                double totalLength = currentV.getTentativeLength() + edge.getLength();
+                totalLength = currentV.getTentativeLength() + edge.getLength();
 
                 if (totalLength < nextV.getTentativeLength()) {
                     nextV.setTentativeLength(totalLength);
                     nextV.setPrevious(currentV);
                 }
 
-                this.addVertexToOpenList(openList, nextV);
+                addVertexToOpenList(openList, nextV);
             }
 
             openList.remove(currentV);
@@ -85,15 +88,15 @@ public class Graph {
         }
     }
 
-    public List<Vertex> findShortestParth(Vertex start, Vertex end) {
-        Vertex current;
+    public List<Vertex> findShortestPath(Vertex start, Vertex end) {
+        Vertex current = end;
         List<Vertex> shortestPath = new LinkedList<>();
+
         calcDistancesFromStart(start);
 
-        current = end;
         do {
             shortestPath.add(current);
-            current = end.getPrevious();
+            current = current.getPrevious();
         } while (current != start);
 
         shortestPath.add(start);
