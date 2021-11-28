@@ -55,20 +55,20 @@ public class Main {
         dijkstraGraph.addVertex(F);
         dijkstraGraph.addVertex(G);
 
-        new Edge(A, B).setLength(10);
-        new Edge(A, C).setLength(37);
-        new Edge(A, F).setLength(21);
-        new Edge(A, G).setLength(46);
-        new Edge(B, D).setLength(94);
-        new Edge(B, E).setLength(58);
-        new Edge(B, F).setLength(34);
-        new Edge(C, D).setLength(50);
-        new Edge(C, E).setLength(99);
-        new Edge(C, F).setLength(22);
-        new Edge(D, G).setLength(11);
-        new Edge(E, F).setLength(13);
-        new Edge(E, G).setLength(89);
-        new Edge(F, G).setLength(95);
+        new Edge(A, B, 10);
+        new Edge(A, C, 37);
+        new Edge(A, F, 21);
+        new Edge(A, G, 46);
+        new Edge(B, D, 94);
+        new Edge(B, E, 58);
+        new Edge(B, F, 34);
+        new Edge(C, D, 50);
+        new Edge(C, E, 99);
+        new Edge(C, F, 22);
+        new Edge(D, G, 11);
+        new Edge(E, F, 13);
+        new Edge(E, G, 89);
+        new Edge(F, G, 95);
 
         System.out.println(dijkstraGraph.findShortestPath(A, E));
         System.out.println(dijkstraGraph.findShortestPath(B, C));
