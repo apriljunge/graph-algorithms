@@ -1,5 +1,7 @@
 package A2_hierholzer;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         Graph graph = new Graph();
@@ -70,7 +72,10 @@ public class Main {
         new Edge(E, G, 89);
         new Edge(F, G, 95);
 
-        System.out.println(dijkstraGraph.findShortestPath(A, E));
-        System.out.println(dijkstraGraph.findShortestPath(B, C));
+        List<Vertex> path1 = dijkstraGraph.findShortestPath(A, E);
+        System.out.println("Pfad 1: " +  path1 + " hat die Länge " + path1.get(path1.size() - 1).getTentativeLength());
+        
+        List<Vertex> path2 = dijkstraGraph.findShortestPath(B, C);
+        System.out.println("Pfad 2: " +  path2 + " hat die Länge " + path2.get(path2.size() - 1).getTentativeLength());
     }
 }
