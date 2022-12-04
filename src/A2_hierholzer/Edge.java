@@ -17,6 +17,7 @@ public class Edge {
         this.v1 = v1;
         this.v2 = v2;
         this.visited = false;
+        this.length = length;
         addEdgeToVertices();
     }
 
